@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movimento por Grades Mais Flexíveis no DAINF</title>
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Configuração do Tailwind com cores customizadas -->
+  <script src="../assets/js/tailwind-config.js"></script>
+
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Chart.js DataLabels plugin via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body class="antialiased overflow-x-hidden bg-custom-bg">
+  <nav class="bg-custom-bg border-b border-custom-border sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-[80%] mx-auto px-4 flex justify-between items-center h-16">
+      <div class="flex items-center">
+        <img src="../assets/data/logoUTFPR.png" class="max-h-[40px]" alt="">
+      </div>
+      <ul class="flex list-none m-0 p-0 gap-2">
+        <li class="flex items-center">
+          <a href="home.html"
+            class="bg-transparent border-none text-custom-text-primary text-md font-medium px-3 py-2 cursor-pointer transition-all duration-150 ease-in-out no-underline relative hover:text-custom-text ">Início</a>
+        </li>
+        <li class="flex items-center">
+          <a href="reports.html"
+            class="bg-transparent border-none text-custom-text-secondary text-md font-medium px-3 py-2 cursor-pointer transition-all duration-150 ease-in-out no-underline relative hover:text-custom-text ">Relatos</a>
+        </li>
+        <li class="flex items-center">
+          <a href="report.html"
+            class="bg-transparent border-none text-custom-text-secondary text-md font-medium px-3 py-2 cursor-pointer transition-all duration-150 ease-in-out no-underline relative hover:text-custom-text">Relatório</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- SEÇÃO INÍCIO -->
+  <section id="homeSection" class="block">
+    <div class="container mx-auto py-16 flex flex-col gap-8 max-w-[80%]">
+      <div class="flex flex-col md:flex-row justify-between h-fit gap-16">
+        <header class="flex flex-col gap-8 text-left w-full">
+          <h1 class="font-bold text-2xl md:text-3xl tracking-tight text-custom-text">
+            Movimento por Grades Mais Flexíveis no DAINF
+          </h1>
+          <p class="max-w-3xl text-lg text-custom-text-secondary">
+            Somos um grupo de alunos de BSI e Engenharia de Computação que buscamos
+            tornar as grades horárias mais flexíveis e inclusivas. Esta página reúne os
+            resultados da nossa pesquisa anônima, destacando os desafios enfrentados
+            para conciliar aulas, estágios, trabalho e vida pessoal.
+            <br></br>
+            Coletamos também relatos anônimos de alunos que enfrentam dificuldades com os horários atuais. Os relatos
+            estão disponíveis para leitura e reflexão sobre as experiências vividas por nossos colegas.
+          </p>
+        </header>
+
+        <!-- MÉTRICAS -->
+        <section aria-label="Métricas da pesquisa" class="w-full max-h-fit flex flex-col">
+          <div class="flex justify-between border border-custom-card-border h-1/2">
+            <div
+              class="bg-custom-surface border-r shadow-sm flex flex-col items-center justify-center py-6 gap-4 w-1/2">
+              <h3 id="totalResponses" class="text-4xl font-bold text-custom-text">--</h3>
+              <p class="text-sm text-custom-text-secondary">Respostas totais</p>
+            </div>
+            <div
+              class="bg-custom-surface border-r shadow-sm flex flex-col items-center justify-center py-6 gap-4 w-1/2">
+              <h3 id="trancarPercent" class="text-4xl font-bold text-custom-text">--</h3>
+              <p class="text-sm text-custom-text-secondary">
+                Já cogitaram trancar
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-custom-surface border-r border-l border-b border-custom-card-border shadow-sm flex flex-col items-center justify-center py-6 gap-4">
+            <h3 id="topReasons" class="text-base font-medium px-4 text-custom-text">--</h3>
+            <p class="text-sm text-custom-text-secondary m-0 mx-4">
+              Top 3 razões de dificuldade
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- SEPARADOR HORIZONTAL -->
+      <div class="w-screen mt-0.5 mb-0.5">
+        <hr class="border-t border-custom-border" />
+      </div>
+
+      <!-- GRÁFICOS -->
+      <section aria-label="Gráficos" class="flex flex-col gap-8">
+        <div class="grid md:grid-cols-2 gap-16">
+          <!-- Razões (Bar) -->
+          <div class="flex flex-col gap-4">
+            <h2 class="text-xl font-semibold md:text-left text-custom-text">
+              Principais dificuldades
+            </h2>
+            <div class="chart-container">
+              <canvas id="reasonsChart"></canvas>
+            </div>
+          </div>
+
+          <!-- SEPARADOR MOBILE -->
+          <div class="showOnMobile w-screen mt-4 mb-4 hidden">
+            <hr class="border-t border-custom-border" />
+          </div>
+
+          <!-- Cursos (Pie) -->
+          <div class="flex flex-col gap-4">
+            <h2 class="text-xl font-semibold md:text-left text-custom-text">
+              Distribuição por curso
+            </h2>
+            <div class="chart-container">
+              <canvas id="coursesChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEPARADOR HORIZONTAL -->
+        <div class="w-screen mt-0.5 mb-0.5">
+          <hr class="border-t border-custom-border" />
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-16">
+          <!-- Categorias de Horários (Bar) -->
+          <div class="flex flex-col gap-4">
+            <h2 class="text-xl font-semibold md:text-left text-custom-text">
+              Agrupamento com maior ocorrência
+            </h2>
+            <div class="chart-container">
+              <canvas id="categoriasChart"></canvas>
+            </div>
+
+            <!-- SEPARADOR MOBILE -->
+            <div class="showOnMobile w-screen mt-4 mb-4 hidden">
+              <hr class="border-t border-custom-border" />
+            </div>
+          </div>
+
+          <!-- Horários (Bar) -->
+          <div class="flex flex-col gap-4">
+            <h2 class="text-xl font-semibold md:text-left text-custom-text">
+              Horários com maior ocorrência
+            </h2>
+            <div class="chart-container">
+              <canvas id="horariosChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Relatos + Botão -->
+        <div class="flex flex-col gap-6 w-full">
+          <!-- SEPARADOR HORIZONTAL -->
+          <div class="w-screen mt-0.5 mb-0.5">
+            <hr class="border-t border-custom-border" />
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-16">
+            <!-- Relatos -->
+            <div class="flex flex-col gap-4">
+              <div class="flex justify-between">
+                <h2 class="text-xl font-semibold md:text-left text-custom-text">
+                  Relatos de Alunos
+                </h2>
+              </div>
+              <div class="flex flex-col gap-4">
+                <article class="bg-custom-surface border border-custom-card-border shadow-sm p-4 rounded">
+                  <p class="text-custom-text">
+                    "Sou aluna do 6º período do curso na UT e, atualmente, também estou trabalhando como CLT. No
+                    entanto,
+                    apesar de gostar muito da minha empresa e do trabalho que eu faço, estou pensando em sair a partir
+                    do
+                    ano que vem, pois os horários das matérias que ainda preciso fazer impossibilitam a conciliação
+                    entre os
+                    dois e, se eu quiser terminar a graduação antes de jubilar no curso, infelizmente terei que
+                    abandonar
+                    meu emprego."
+                  </p>
+                </article>
+                <article class="bg-custom-surface border border-custom-card-border shadow-sm p-4 rounded">
+                  <p class="text-custom-text">
+                    "Eu já perdi n vagas de bons estágios/oportunidades profissionais relevantes por conta desse horário
+                    concentrado no período vespertino. quando me inscrevi pensava que o turno tarde/noite seria algo
+                    mais
+                    coerente do que dar aula 13h como regra geral e, às vezes, colocar umas disciplinas mais à noite.
+                    praticamente é impossível cursar as obrigatórias sem se submeter ao intervalo da T1 à T3. a
+                    universidade
+                    perde estudantes desde 2022 e vai continuar perdendo enquanto não compreender que a maioria dos
+                    alunos
+                    PRECISA fazer algo da vida além de estudar, como pode todo poder de decisão sobre esse aspecto da
+                    graduação ser concentrado no docente?"
+                  </p>
+                </article>
+              </div>
+              <div class="flex justify-center">
+                <a href="reports.html"
+                  class="bg-custom-navbar-bg hover:bg-[#d9a404] active:bg-custom-primary-active text-custom-text hover:text-white px-6 py-3 rounded font-medium transition-colors duration-200 no-underline">
+                  Ver Todos os Relatos
+                </a>
+              </div>
+            </div>
+
+            <!-- Gráfico de Trancamento -->
+            <div class="flex flex-col gap-4">
+              <h2 class="text-xl font-semibold md:text-left text-custom-text">
+                Cogitaram trancar matrícula
+              </h2>
+              <div class="chart-container">
+                <canvas id="trancarChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- MAIN JS -->
+  <script type="module" src="../assets/js/app.js"></script>
+  <script>
+    function checarRedirecionamento() {
+      if (window.innerWidth < 1200) {
+        window.location.href = 'erro.html';
+      }
+    }
+    // Verifica ao carregar o DOM
+    window.addEventListener("DOMContentLoaded", checarRedirecionamento); r
+    // Verifica a cada redimensionamento da janela
+    window.addEventListener("resize", () => {
+      clearTimeout(window._resizeTimeout);
+      window._resizeTimeout = setTimeout(checarRedirecionamento, 250);
+    });
+  </script>
+</body>
+
+</html>
