@@ -5,17 +5,26 @@ export const SHEET_URL = "https://docs.google.com/spreadsheets/d/1nniFbqvNg0Rin-
 
 // Cores dos gráficos
 export const CHART_COLORS = [
-  "#1FB8CD",
-  "#FFC185",
-  "#B4413C",
-  "#ECEBD5",
-  "#5D878F",
-  "#DB4545",
-  "#D2BA4C",
-  "#964325",
-  "#944454",
-  "#13343B",
+  "#D4B04A", // amarelo mostarda
+  "#4A90A4", // azul acinzentado
+  "#7BA05B", // verde oliva suave
+  "#B85450", // rosa terroso
+  "#8E7CC3", // roxo acinzentado
+  "#6B9B93", // verde acinzentado
+  "#CC8E35", // ocre dourado
+  "#E8D5B7", // bege claro
+  "#8490A0", // cinza azulado neutro
+  "#A0615A", // terracota suave
+  "#5A7CA8", // azul aço
+  "#8B6F47", // marrom avelã
+  "#B56C6C", // rosa empoeirado
+  "#9D7DB2", // lavanda escura
+  "#5F9A8E", // verde sage
+  "#A0507A", // vinho suave
+  "#7A8471",  // verde acinzentado
+  "#C2906C", // bege rosado
 ];
+
 
 // Labels fixos para o gráfico de razões
 export const REASONS_LABELS = [
