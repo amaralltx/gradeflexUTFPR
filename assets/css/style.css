@@ -381,10 +381,12 @@ a:hover {
 }
 
 .mobile-divider {
-  width: 100vw;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  display: none;
+  width: 100%;
+  border-top: 1px solid var(--color-border);
+  margin: auto;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  /* display: none; */
 }
 
 /* Relatos */
@@ -420,6 +422,10 @@ a:hover {
 
 /* Responsividade da navegação */
 @media (max-width: 768px) {
+  .mobile-divider {
+    display: flex;
+  }
+
   .nav-container {
     padding: 0 0.75rem;
   }

@@ -1,11 +1,12 @@
 // chartService.js - Serviço para criação e gerenciamento de gráficos
-
 import { CHART_COLORS, REASONS_LABELS, CHART_CONFIG } from './config.js';
 import { breakLabel } from './utils.js';
 
 // Função auxiliar para criar gráficos de barras horizontais
 export const createBarChart = (
   canvasId,
+  title,
+  subtitle,
   labels,
   data,
   colors,
@@ -16,14 +17,11 @@ export const createBarChart = (
 ) => {
   const canvas = document.getElementById(canvasId);
   if (canvas) {
-    console.log("1");
     if (customHeight) {
-      console.log("2");
       canvas.setAttribute("height", customHeight);
       canvas.style.height = `${customHeight} !important`;
       canvas.style.maxHeight = customHeight;
     } else {
-      console.log("3");
       canvas.height = CHART_CONFIG.defaultHeight;
       canvas.style.height = CHART_CONFIG.defaultHeight;
       canvas.style.maxHeight = CHART_CONFIG.defaultMaxHeight;
@@ -42,6 +40,22 @@ export const createBarChart = (
       maintainAspectRatio: false,
       layout: { padding: { top: 30, right: 30 } },
       plugins: {
+        title: {
+          display: true,
+          text: title,
+          align: "center",
+          font: {
+            size: 18
+          },
+        },
+        subtitle: {
+          display: true,
+          text: subtitle,
+          font: { size: 11 },
+          color: '#4d4d4d',
+          align: "center",
+          padding: { top: 8, bottom: 8 },
+        },
         legend: { display: false },
         tooltip: {
           callbacks: {
@@ -61,7 +75,7 @@ export const createBarChart = (
             const percent = ((value / total) * 100).toFixed(1);
             return `${value}`;
           },
-          color: '#0d1017',
+          color: '#4d4d4d',
           font: { weight: 'medium', size: 14 }
         }
       },
@@ -86,7 +100,7 @@ export const createBarChart = (
 
 
 // Função auxiliar para criar gráficos pie
-export const createPieChart = (canvasId, labels, data, colors) => {
+export const createPieChart = (canvasId, title, subtitle, labels, data, colors) => {
   const canvas = document.getElementById(canvasId);
   if (canvas) {
     canvas.style.height = CHART_CONFIG.defaultHeight;
@@ -103,6 +117,22 @@ export const createPieChart = (canvasId, labels, data, colors) => {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
+        title: {
+          display: true,
+          text: title,
+          align: "center",
+          font: {
+            size: 18
+          },
+        },
+        subtitle: {
+          display: true,
+          text: subtitle,
+          font: { size: 11 },
+          color: '#4d4d4d',
+          align: "center",
+          padding: { top: 8, bottom: 8 },
+        },
         tooltip: {
           callbacks: {
             label: function (context) {
@@ -153,11 +183,6 @@ const extractTimeSlot = (horario) => {
 };
 
 export const renderCharts = (stats, cachedData) => {
-  // --- Cursos Pie Chart ---
-  const coursesLabels = stats.coursesSorted.map((c) => c[0]);
-  const coursesData = stats.coursesSorted.map((c) => c[1]);
-  createPieChart("coursesChart", coursesLabels, coursesData, CHART_COLORS.slice(0, coursesLabels.length));
-
   // --- Razões Bar Chart ---
   const data = cachedData || [];
   const reasonsCounts = REASONS_LABELS.map((label) => {
@@ -180,17 +205,18 @@ export const renderCharts = (stats, cachedData) => {
   reasonsLabelsSorted[4] = ["Dificuldade de", "aprendizado no turno"]
   const reasonsCountsSorted = reasonsSorted.map(([_, count]) => count);
   const reasonsColors = CHART_COLORS.slice(0, reasonsLabelsSorted.length);
+  const reasontitle = (window.innerWidth <= 600 ? ["⁠Principais Motivadores da", "Insatisfação com Horários Atuais"] : "⁠Principais Motivadores da Insatisfação com Horários Atuais");
+  const reasonSubtitle = "Gráfico 1";
 
-  createBarChart("reasonsChart", reasonsLabelsSorted, reasonsCountsSorted, reasonsColors, Math.max(...reasonsCounts) + 20, "horizontal", true, CHART_CONFIG.reasonsHeight);
-  // --- Horários Bar Chart ---
-  const horariosSorted = Object.entries(stats.horariosFreq).sort((a, b) => b[1] - a[1]);
-  const horariosLabels = horariosSorted.map((h) => extractTimeSlot(h[0]));
-  console.log(horariosLabels)
-  horariosLabels[17] = "N/A"
-  const horariosData = horariosSorted.map((h) => h[1]);
-  const horariosColors = CHART_COLORS.slice(0, horariosLabels.length);
+  createBarChart("reasonsChart", reasontitle, reasonSubtitle, reasonsLabelsSorted, reasonsCountsSorted, reasonsColors, Math.max(...reasonsCounts) + 20, "horizontal", true, CHART_CONFIG.reasonsHeight);
 
-  createBarChart("horariosChart", horariosLabels, horariosData, horariosColors, Math.max(...horariosData) + 50, "horizontal", true);
+
+  // --- Cursos Pie Chart ---
+  const coursesLabels = stats.coursesSorted.map((c) => c[0]);
+  const coursesData = stats.coursesSorted.map((c) => c[1]);
+  const coursetitle = (window.innerWidth <= 600 ? ["⁠Distribuição de Respostas", "por Curso"] : "⁠Distribuição de Respondentes por Curso");
+  const courseSubtitle = "Gráfico 2";
+  createPieChart("coursesChart", coursetitle, courseSubtitle, coursesLabels, coursesData, CHART_COLORS.slice(0, coursesLabels.length));
 
   // --- Categorias de Horários Bar Chart ---
   let categoriasLabels = Object.keys(stats.horariosCategorias);
@@ -200,13 +226,27 @@ export const renderCharts = (stats, cachedData) => {
   categoriasLabels[3] = "N1 - N6"
   const categoriasData = Object.values(stats.horariosCategorias);
   const categoriasColors = CHART_COLORS.slice(0, categoriasLabels.length);
+  const categoriastitle = (window.innerWidth <= 600 ? ["⁠Quantitativo de Insatisfação", "por Período do Dia"] : "Quantitativo de Insatisfação por Período do Dia");
+  const categoriasSubtitle = "Gráfico 3";
 
-  createBarChart("categoriasChart", categoriasLabels, categoriasData, categoriasColors, Math.max(...categoriasData) + 130, "horizontal", true);
+  createBarChart("categoriasChart", categoriastitle, categoriasSubtitle, categoriasLabels, categoriasData, categoriasColors, Math.max(...categoriasData) + 130, "horizontal", true);
+
+  // --- Horários Bar Chart ---
+  const horariosSorted = Object.entries(stats.horariosFreq).sort((a, b) => b[1] - a[1]);
+  const horariosLabels = horariosSorted.map((h) => extractTimeSlot(h[0]));
+  horariosLabels[17] = "N/A"
+  const horariosData = horariosSorted.map((h) => h[1]);
+  const horariosColors = CHART_COLORS.slice(0, horariosLabels.length);
+  const horariostitle = (window.innerWidth <= 600 ? ["⁠Quantitativo de Insatisfação", "por Horário Específico"] : "⁠Quantitativo de Insatisfação por Horário Específico");
+  const horariosSubtitle = "Gráfico 4";
+
+  createBarChart("horariosChart", horariostitle, horariosSubtitle, horariosLabels, horariosData, horariosColors, Math.max(...horariosData) + 50, "horizontal", true);
 
   // --- Trancamento Pie Chart ---
   const trancarLabels = Object.keys(stats.trancarData);
   const trancarValues = Object.values(stats.trancarData);
   const trancarColors = ["#b56262", "#62a8b5"];
-
-  createPieChart("trancarChart", trancarLabels, trancarValues, trancarColors);
+  const trancartitle = (window.innerWidth <= 600 ? ["Porcentagem de Respondentes que", "já cogitaram trancar a matrícula"] : "Porcentagem de Respondentes que já cogitaram trancar a matrícula");
+  const trancarSubtitle = "Gráfico 5";
+  createPieChart("trancarChart", trancartitle, trancarSubtitle, trancarLabels, trancarValues, trancarColors);
 }; 

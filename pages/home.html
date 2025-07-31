@@ -92,33 +92,22 @@
       </div>
 
       <!-- SEPARADOR HORIZONTAL -->
-      <div class="w-screen mt-0.5 mb-0.5">
-        <hr class="border-t border-custom-border" />
-      </div>
+      <hr class="mobile-divider mt-0.5 mb-0.5" />
 
       <!-- GRÁFICOS -->
-      <section aria-label="Gráficos" class="flex flex-col gap-8">
+      <section aria-label="Gráficos" class="flex flex-col gap-8 md:gap-16">
         <div class="grid md:grid-cols-2 gap-16">
           <!-- Razões (Bar) -->
           <div class="flex flex-col gap-4">
-            <h2 class="text-xl font-semibold md:text-left text-custom-text">
-              Principais dificuldades
-            </h2>
             <div class="chart-container">
               <canvas class="overflow-visible" id="reasonsChart"></canvas>
             </div>
           </div>
 
-          <!-- SEPARADOR MOBILE -->
-          <div class="showOnMobile w-screen mt-4 mb-4 hidden">
-            <hr class="border-t border-custom-border" />
-          </div>
+          <hr class="mobile-divider md:hidden mt-0.5 mb-0.5" />
 
           <!-- Cursos (Pie) -->
           <div class="flex flex-col gap-4">
-            <h2 class="text-xl font-semibold md:text-left text-custom-text">
-              Distribuição por curso
-            </h2>
             <div class="chart-container">
               <canvas class="overflow-visible" id="coursesChart"></canvas>
             </div>
@@ -126,49 +115,44 @@
         </div>
 
         <!-- SEPARADOR HORIZONTAL -->
-        <div class="w-screen mt-0.5 mb-0.5">
-          <hr class="border-t border-custom-border" />
-        </div>
+        <hr class="mobile-divider mt-0.5 mb-0.5" />
 
         <div class="grid md:grid-cols-2 gap-16">
           <!-- Categorias de Horários (Bar) -->
           <div class="flex flex-col gap-4">
-            <h2 class="text-xl font-semibold md:text-left text-custom-text">
-              Agrupamento com maior ocorrência
-            </h2>
             <div class="chart-container">
               <canvas class="overflow-visible" id="categoriasChart"></canvas>
             </div>
 
             <!-- SEPARADOR MOBILE -->
-            <div class="showOnMobile w-screen mt-4 mb-4 hidden">
-              <hr class="border-t border-custom-border" />
-            </div>
+            <hr class="mobile-divider md:hidden mt-0.5 mb-0.5" />
           </div>
 
           <!-- Horários (Bar) -->
           <div class="flex flex-col gap-4">
-            <h2 class="text-xl font-semibold md:text-left text-custom-text">
-              Horários com maior ocorrência
-            </h2>
             <div class="chart-container">
               <canvas class="overflow-visible" id="horariosChart"></canvas>
             </div>
           </div>
         </div>
 
-        <!-- Relatos + Botão -->
-        <div class="flex flex-col gap-6 w-full">
-          <!-- SEPARADOR HORIZONTAL -->
-          <div class="w-screen mt-0.5 mb-0.5">
-            <hr class="border-t border-custom-border" />
-          </div>
+        <hr class="mobile-divider mt-0.5 mb-0.5" />
 
-          <div class="grid md:grid-cols-2 gap-16">
+        <!-- Trancamento + Relatos -->
+        <div class="flex flex-col gap-6 w-full">
+          <div class="flex flex-col md:flex-row align-center gap-8">
+            <!-- Gráfico de Trancamento -->
+            <div class="chart-container md:w-1/2">
+              <canvas class="overflow-visible" id="trancarChart"></canvas>
+            </div>
+
+            <!-- SEPARADOR HORIZONTAL -->
+            <hr class="mobile-divider md:hidden mt-0.5 mb-0.5" />
+
             <!-- Relatos -->
-            <div class="flex flex-col gap-4">
-              <div class="flex justify-between">
-                <h2 class="text-xl font-semibold md:text-left text-custom-text">
+            <div class="flex flex-col gap-4 md:w-1/2 ">
+              <div class="flex justify-center align-center">
+                <h2 class="flex text-xl font-semibold md:text-left text-custom-text font-bold" style="color: #757575">
                   Relatos de Alunos
                 </h2>
               </div>
@@ -209,15 +193,6 @@
               </div>
             </div>
 
-            <!-- Gráfico de Trancamento -->
-            <div class="flex flex-col gap-4">
-              <h2 class="text-xl font-semibold md:text-left text-custom-text">
-                Cogitaram trancar matrícula
-              </h2>
-              <div class="chart-container">
-                <canvas class="overflow-visible" id="trancarChart"></canvas>
-              </div>
-            </div>
           </div>
         </div>
       </section>

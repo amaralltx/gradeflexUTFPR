@@ -19,3 +19,4 @@ export function breakLabel(text, maxLineLength = 30) {
   if (currentLine) lines.push(currentLine.trim());
   return lines;
 }
+
