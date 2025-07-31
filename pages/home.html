@@ -23,22 +23,24 @@
 
 <body class="antialiased overflow-x-hidden bg-custom-bg">
   <nav class="bg-custom-bg border-b border-custom-border sticky top-0 z-50 backdrop-blur-md">
-    <div class="max-w-[80%] mx-auto px-4 flex justify-between items-center h-16">
-      <a href="./home.html" class="flex items-center">
-        <img src="../assets/data/logoUTFPR.png" class="max-h-[40px]" alt="">
+    <div
+      class="ml-[10%] mr-[10%] md:max-w-[80%] md:mr-auto md:ml-auto md:px-4 flex justify-between items-center h-16 gap-8">
+      <a href="./home.html"
+        class="flex items-center text-custom-text hover:text-custom-primary transition-colors font-bold md:text-4xl">
+        DASC
       </a>
-      <ul class="flex list-none m-0 p-0 gap-2">
+      <ul class="flex list-none m-0 p-0 md:gap-2">
         <li class="flex items-center">
           <a href="home.html"
-            class="bg-transparent border-none text-custom-text-primary text-md font-medium px-3 py-2 cursor-pointer transition-all duration-150 ease-in-out no-underline relative hover:text-custom-text ">Início</a>
+            class="bg-transparent text-custom-text-primary text-md font-medium px-2 md:px-3 md:py-2 cursor-pointer transition-all duration-150 ease-in-out no-underline relative hover:text-custom-text border-r border-custom-card-border">Dashboard</a>
         </li>
         <li class="flex items-center">
           <a href="reports.html"
-            class="bg-transparent border-none text-custom-text-secondary text-md font-medium px-3 py-2 cursor-pointer transition-all duration-150 ease-in-out no-underline relative hover:text-custom-text ">Relatos</a>
+            class="bg-transparent text-custom-text-secondary text-md font-medium px-2 md:x-3 md:py-2 cursor-pointer transition-all duration-150 ease-in-out no-underline relative hover:text-custom-text border-r border-custom-card-border">Relatos</a>
         </li>
         <li class="flex items-center">
           <a href="report.html"
-            class="bg-transparent border-none text-custom-text-secondary text-md font-medium px-3 py-2 cursor-pointer transition-all duration-150 ease-in-out no-underline relative hover:text-custom-text">Relatório</a>
+            class="bg-transparent text-custom-text-secondary text-md font-medium px-2 md:px-3 md:py-2 cursor-pointer transition-all duration-150 ease-in-out no-underline relative hover:text-custom-text">Relatório</a>
         </li>
       </ul>
     </div>
@@ -46,7 +48,7 @@
 
   <!-- SEÇÃO INÍCIO -->
   <section id="homeSection" class="block">
-    <div class="container mx-auto py-16 flex flex-col gap-8 max-w-[80%]">
+    <div class="container mx-auto py-8 md:py-16 md:px-16 flex flex-col gap-8 max-w-[80%]">
       <div class="flex flex-col md:flex-row justify-between h-fit gap-16">
         <header class="flex flex-col gap-8 text-left w-full">
           <h1 class="font-bold text-2xl md:text-3xl tracking-tight text-custom-text">
@@ -103,7 +105,7 @@
               Principais dificuldades
             </h2>
             <div class="chart-container">
-              <canvas id="reasonsChart"></canvas>
+              <canvas class="overflow-visible" id="reasonsChart"></canvas>
             </div>
           </div>
 
@@ -118,7 +120,7 @@
               Distribuição por curso
             </h2>
             <div class="chart-container">
-              <canvas id="coursesChart"></canvas>
+              <canvas class="overflow-visible" id="coursesChart"></canvas>
             </div>
           </div>
         </div>
@@ -135,7 +137,7 @@
               Agrupamento com maior ocorrência
             </h2>
             <div class="chart-container">
-              <canvas id="categoriasChart"></canvas>
+              <canvas class="overflow-visible" id="categoriasChart"></canvas>
             </div>
 
             <!-- SEPARADOR MOBILE -->
@@ -150,7 +152,7 @@
               Horários com maior ocorrência
             </h2>
             <div class="chart-container">
-              <canvas id="horariosChart"></canvas>
+              <canvas class="overflow-visible" id="horariosChart"></canvas>
             </div>
           </div>
         </div>
@@ -213,7 +215,7 @@
                 Cogitaram trancar matrícula
               </h2>
               <div class="chart-container">
-                <canvas id="trancarChart"></canvas>
+                <canvas class="overflow-visible" id="trancarChart"></canvas>
               </div>
             </div>
           </div>
@@ -224,20 +226,6 @@
 
   <!-- MAIN JS -->
   <script type="module" src="../assets/js/app.js"></script>
-  <script>
-    function checarRedirecionamento() {
-      if (window.innerWidth < 1200) {
-        window.location.href = 'erro.html';
-      }
-    }
-    // Verifica ao carregar o DOM
-    window.addEventListener("DOMContentLoaded", checarRedirecionamento); r
-    // Verifica a cada redimensionamento da janela
-    window.addEventListener("resize", () => {
-      clearTimeout(window._resizeTimeout);
-      window._resizeTimeout = setTimeout(checarRedirecionamento, 250);
-    });
-  </script>
 </body>
 
 </html>

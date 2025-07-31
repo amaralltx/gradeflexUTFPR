@@ -138,19 +138,41 @@ body {
 }
 
 /* Tipografia base */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   font-weight: 600;
   line-height: 1.25;
   color: #1f2937;
 }
 
-h1 { font-size: 2.25rem; }
-h2 { font-size: 1.875rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1.125rem; }
-h6 { font-size: 1rem; }
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
 
 p {
   margin: 0 0 1rem 0;
@@ -217,27 +239,37 @@ a:hover {
   overflow-x: hidden;
   margin-right: auto;
   margin-left: auto;
-  padding-right: 1rem;
-  padding-left: 1rem;
 }
 
 @media (min-width: 640px) {
-  .container { max-width: 24rem; }
+  .container {
+    max-width: 24rem;
+  }
 }
+
 @media (min-width: 768px) {
-  .container { max-width: 28rem; }
+  .container {
+    max-width: 28rem;
+  }
 }
+
 @media (min-width: 1024px) {
-  .container { max-width: 32rem; }
+  .container {
+    max-width: 32rem;
+  }
 }
+
 @media (min-width: 1280px) {
-  .container { max-width: 36rem; }
+  .container {
+    max-width: 36rem;
+  }
 }
 
 /* Gráficos - mantém estilos específicos */
 .chart-container {
+  display: flex;
   max-height: 450px;
-  justify-content: flex-start;
+  justify-content: end;
   overflow-y: auto;
 }
 
@@ -260,9 +292,11 @@ a:hover {
     max-width: 17.5rem;
     width: 100%;
   }
+
   .showOnMobile {
     display: block;
   }
+
   .grid.md\\:grid-cols-2 {
     grid-template-columns: 1fr;
   }
@@ -388,15 +422,15 @@ a:hover {
   .nav-container {
     padding: 0 0.75rem;
   }
-  
+
   .nav-title {
     font-size: 1rem;
   }
-  
+
   .nav-menu {
     gap: 0.25rem;
   }
-  
+
   .nav-link {
     padding: 0.5rem 0.75rem;
     font-size: 0.75rem;
@@ -422,11 +456,11 @@ a:hover {
   .main-section {
     max-width: 95vw;
   }
-  
+
   .card.p-8 {
     padding: 1rem;
   }
-  
+
   .grid.md\\:grid-cols-2,
   .grid.md\\:grid-cols-3 {
     grid-template-columns: 1fr;

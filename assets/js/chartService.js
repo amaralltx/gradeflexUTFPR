@@ -75,9 +75,7 @@ export const createBarChart = (
           beginAtZero: true,
           ticks: {
             precision: 0,
-            callback: orientation === "horizontal" ? function (value, index) {
-              return labels[index] || "";
-            } : function () { return ""; }
+            font: { size: 11 }
           }
         },
       },
@@ -175,24 +173,35 @@ export const renderCharts = (stats, cachedData) => {
   const reasonsPairs = REASONS_LABELS.map((label, i) => [label, reasonsCounts[i]]);
   const reasonsSorted = reasonsPairs.sort((a, b) => b[1] - a[1]);
   const reasonsLabelsSorted = reasonsSorted.map(([label]) => breakLabel(label));
+  reasonsLabelsSorted[0] = ["Dificuldade em", "conseguir estágio"]
+  reasonsLabelsSorted[1] = ["Preciso trabalhar no", " horário da aula"]
+  reasonsLabelsSorted[2] = ["Moradia muito", "longe da instiuição"]
+  reasonsLabelsSorted[3] = ["Responsabilidades", "pessoais ou familiares"]
+  reasonsLabelsSorted[4] = ["Dificuldade de", "aprendizado no turno"]
   const reasonsCountsSorted = reasonsSorted.map(([_, count]) => count);
   const reasonsColors = CHART_COLORS.slice(0, reasonsLabelsSorted.length);
 
-  createBarChart("reasonsChart", reasonsLabelsSorted, reasonsCountsSorted, reasonsColors, Math.max(...reasonsCounts) + 20, "vertical", true, CHART_CONFIG.reasonsHeight);
+  createBarChart("reasonsChart", reasonsLabelsSorted, reasonsCountsSorted, reasonsColors, Math.max(...reasonsCounts) + 20, "horizontal", true, CHART_CONFIG.reasonsHeight);
   // --- Horários Bar Chart ---
   const horariosSorted = Object.entries(stats.horariosFreq).sort((a, b) => b[1] - a[1]);
   const horariosLabels = horariosSorted.map((h) => extractTimeSlot(h[0]));
+  console.log(horariosLabels)
+  horariosLabels[17] = "N/A"
   const horariosData = horariosSorted.map((h) => h[1]);
   const horariosColors = CHART_COLORS.slice(0, horariosLabels.length);
 
-  createBarChart("horariosChart", horariosLabels, horariosData, horariosColors, Math.max(...horariosData) + 50, true);
+  createBarChart("horariosChart", horariosLabels, horariosData, horariosColors, Math.max(...horariosData) + 50, "horizontal", true);
 
   // --- Categorias de Horários Bar Chart ---
-  const categoriasLabels = Object.keys(stats.horariosCategorias);
+  let categoriasLabels = Object.keys(stats.horariosCategorias);
+  categoriasLabels[0] = "M1 - M6"
+  categoriasLabels[1] = "T1 - T3"
+  categoriasLabels[2] = "T4 - T6"
+  categoriasLabels[3] = "N1 - N6"
   const categoriasData = Object.values(stats.horariosCategorias);
   const categoriasColors = CHART_COLORS.slice(0, categoriasLabels.length);
 
-  createBarChart("categoriasChart", categoriasLabels, categoriasData, categoriasColors, Math.max(...categoriasData) + 130, true);
+  createBarChart("categoriasChart", categoriasLabels, categoriasData, categoriasColors, Math.max(...categoriasData) + 130, "horizontal", true);
 
   // --- Trancamento Pie Chart ---
   const trancarLabels = Object.keys(stats.trancarData);
