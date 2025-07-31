@@ -183,6 +183,14 @@ const extractTimeSlot = (horario) => {
 };
 
 export const renderCharts = (stats, cachedData) => {
+
+  // --- Cursos Pie Chart ---
+  const coursesLabels = stats.coursesSorted.map((c) => c[0]);
+  const coursesData = stats.coursesSorted.map((c) => c[1]);
+  const coursetitle = (window.innerWidth <= 600 ? ["⁠Distribuição de Respostas", "por Curso"] : "⁠Distribuição de Respondentes por Curso");
+  const courseSubtitle = "Gráfico 1";
+  createPieChart("coursesChart", coursetitle, courseSubtitle, coursesLabels, coursesData, CHART_COLORS.slice(0, coursesLabels.length));
+
   // --- Razões Bar Chart ---
   const data = cachedData || [];
   const reasonsCounts = REASONS_LABELS.map((label) => {
@@ -206,17 +214,9 @@ export const renderCharts = (stats, cachedData) => {
   const reasonsCountsSorted = reasonsSorted.map(([_, count]) => count);
   const reasonsColors = CHART_COLORS.slice(0, reasonsLabelsSorted.length);
   const reasontitle = (window.innerWidth <= 600 ? ["⁠Principais Motivadores da", "Insatisfação com Horários Atuais"] : "⁠Principais Motivadores da Insatisfação com Horários Atuais");
-  const reasonSubtitle = "Gráfico 1";
+  const reasonSubtitle = "Gráfico 2";
 
   createBarChart("reasonsChart", reasontitle, reasonSubtitle, reasonsLabelsSorted, reasonsCountsSorted, reasonsColors, Math.max(...reasonsCounts) + 10, "horizontal", true, CHART_CONFIG.reasonsHeight);
-
-
-  // --- Cursos Pie Chart ---
-  const coursesLabels = stats.coursesSorted.map((c) => c[0]);
-  const coursesData = stats.coursesSorted.map((c) => c[1]);
-  const coursetitle = (window.innerWidth <= 600 ? ["⁠Distribuição de Respostas", "por Curso"] : "⁠Distribuição de Respondentes por Curso");
-  const courseSubtitle = "Gráfico 2";
-  createPieChart("coursesChart", coursetitle, courseSubtitle, coursesLabels, coursesData, CHART_COLORS.slice(0, coursesLabels.length));
 
   // --- Categorias de Horários Bar Chart ---
   let categoriasLabels = Object.keys(stats.horariosCategorias);
