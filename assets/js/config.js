@@ -43,6 +43,6 @@ export const CHART_CONFIG = {
   horariosMaxHeight: "500px",
   categoriasHeight: "600px",
   categoriasMaxHeight: "500px",
-  reasonsHeight: "400px",
+  reasonsHeight: "500px",
   reasonsMaxHeight: "600px"
 }; 
