@@ -208,7 +208,7 @@ export const renderCharts = (stats, cachedData) => {
   const reasontitle = (window.innerWidth <= 600 ? ["⁠Principais Motivadores da", "Insatisfação com Horários Atuais"] : "⁠Principais Motivadores da Insatisfação com Horários Atuais");
   const reasonSubtitle = "Gráfico 1";
 
-  createBarChart("reasonsChart", reasontitle, reasonSubtitle, reasonsLabelsSorted, reasonsCountsSorted, reasonsColors, Math.max(...reasonsCounts) + 20, "horizontal", true, CHART_CONFIG.reasonsHeight);
+  createBarChart("reasonsChart", reasontitle, reasonSubtitle, reasonsLabelsSorted, reasonsCountsSorted, reasonsColors, Math.max(...reasonsCounts) + 10, "horizontal", true, CHART_CONFIG.reasonsHeight);
 
 
   // --- Cursos Pie Chart ---
@@ -229,7 +229,7 @@ export const renderCharts = (stats, cachedData) => {
   const categoriastitle = (window.innerWidth <= 600 ? ["⁠Quantitativo de Insatisfação", "por Período do Dia"] : "Quantitativo de Insatisfação por Período do Dia");
   const categoriasSubtitle = "Gráfico 3";
 
-  createBarChart("categoriasChart", categoriastitle, categoriasSubtitle, categoriasLabels, categoriasData, categoriasColors, Math.max(...categoriasData) + 130, "horizontal", true);
+  createBarChart("categoriasChart", categoriastitle, categoriasSubtitle, categoriasLabels, categoriasData, categoriasColors, Math.max(...categoriasData) + 50, "horizontal", true);
 
   // --- Horários Bar Chart ---
   const horariosSorted = Object.entries(stats.horariosFreq).sort((a, b) => b[1] - a[1]);
@@ -240,7 +240,7 @@ export const renderCharts = (stats, cachedData) => {
   const horariostitle = (window.innerWidth <= 600 ? ["⁠Quantitativo de Insatisfação", "por Horário Específico"] : "⁠Quantitativo de Insatisfação por Horário Específico");
   const horariosSubtitle = "Gráfico 4";
 
-  createBarChart("horariosChart", horariostitle, horariosSubtitle, horariosLabels, horariosData, horariosColors, Math.max(...horariosData) + 50, "horizontal", true);
+  createBarChart("horariosChart", horariostitle, horariosSubtitle, horariosLabels, horariosData, horariosColors, Math.max(...horariosData) + 10, "horizontal", true);
 
   // --- Trancamento Pie Chart ---
   const trancarLabels = Object.keys(stats.trancarData);
