@@ -269,7 +269,7 @@ a:hover {
 .chart-container {
   display: flex;
   max-height: 450px;
-  justify-content: end;
+  justify-content: center;
   overflow-y: auto;
 }
 
@@ -411,6 +411,7 @@ a:hover {
   transition: box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1);
   max-height: 18.75rem;
   overflow-y: auto;
+  margin-top: 0 !important;
 }
 
 .comment-card:hover {

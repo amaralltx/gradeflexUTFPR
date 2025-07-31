@@ -80,7 +80,7 @@ const renderCurrentPage = () => {
 
   pageComments.forEach((comment, index) => {
     const commentCard = document.createElement("article");
-    commentCard.className = "mt-6 bg-custom-surface border border-custom-card-border shadow-sm p-6 rounded-lg hover:shadow-md transition-shadow duration-200 h-[350px] overflow-y-auto";
+    commentCard.className = "comment-card bg-custom-surface border border-custom-card-border shadow-sm p-6 rounded-lg hover:shadow-md transition-shadow duration-200 h-[350px] overflow-y-auto";
 
     const globalIndex = startIndex + index + 1;
     const totalComments = filteredComments.length;
