@@ -3,7 +3,7 @@
   /* Cores principais para tema claro */
   --color-background: #ffffff;
   --color-surface: #f8fafc;
-  --color-text: #1e293b;
+  --color-text: #465163;
   --color-text-secondary: rgba(30, 41, 59, 0.7);
   --color-primary: #0ea5e9;
   --color-primary-hover: #0284c7;
@@ -268,7 +268,7 @@ a:hover {
 /* Gráficos - mantém estilos específicos */
 .chart-container {
   display: flex;
-  max-height: 450px;
+  max-height: 600px;
   justify-content: center;
   overflow-y: auto;
 }
@@ -355,6 +355,12 @@ a:hover {
 
 .metric-card {
   width: 49%;
+}
+
+#topReasons,
+#trancarPercent,
+#totalResponses {
+  color: var(--color-text);
 }
 
 .top-reasons-label {

@@ -37,8 +37,8 @@ export const REASONS_LABELS = [
 
 // Configurações dos gráficos
 export const CHART_CONFIG = {
-  defaultHeight: "400px",
-  defaultMaxHeight: "400px",
+  defaultHeight: "500px",
+  defaultMaxHeight: "600px",
   horariosHeight: "400px",
   horariosMaxHeight: "400px",
   categoriasHeight: "500px",

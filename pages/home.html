@@ -51,7 +51,7 @@
     <div class="container mx-auto py-8 md:py-16 md:px-16 flex flex-col gap-8 max-w-[80%]">
       <div class="flex flex-col md:flex-row justify-between h-fit gap-16">
         <header class="flex flex-col gap-8 text-left w-full">
-          <h1 class="font-bold text-2xl md:text-3xl tracking-tight text-custom-text">
+          <h1 class="font-bold text-2xl md:text-3xl tracking-tight text-custom-text-primary">
             Movimento por Grades Mais Flexíveis no DAINF
           </h1>
           <p class="max-w-3xl text-lg text-custom-text-secondary">
@@ -70,7 +70,7 @@
           <div class="flex justify-between border border-custom-card-border h-1/2">
             <div
               class="bg-custom-surface border-r shadow-sm flex flex-col items-center justify-center py-6 gap-4 w-1/2">
-              <h3 id="totalResponses" class="text-4xl font-bold text-custom-text">--</h3>
+              <h3 id="totalResponses" class="text-4xl font-bold text-custom-text-primary">--</h3>
               <p class="text-sm text-custom-text-secondary">Respostas totais</p>
             </div>
             <div
@@ -93,18 +93,18 @@
       </div>
 
       <!-- SEPARADOR HORIZONTAL -->
-      <hr class="mobile-divider mt-0.5 mb-0.5" />
+      <hr class="mobile-divider mt-1 mb-1" />
 
       <!-- GRÁFICOS -->
-      <section aria-label="Gráficos" class="flex flex-col gap-8 md:gap-16">
-        <div class="grid md:grid-cols-2 gap-16">
+      <section aria-label="Gráficos" class="flex flex-col gap-2 md:gap-8">
+        <div class="grid md:grid-cols-2 md:gap-8">
           <!-- Cursos (Pie) -->
           <div class="flex flex-col gap-4">
             <div class="chart-container">
               <canvas class="overflow-visible" id="coursesChart"></canvas>
             </div>
           </div>
-          <hr class="mobile-divider md:hidden mt-0.5 mb-0.5" />
+          <hr class="mobile-divider md:hidden mt-1 mb-1" />
 
           <!-- Razões (Bar) -->
           <div class="flex flex-col gap-4">
@@ -118,9 +118,9 @@
 
 
         <!-- SEPARADOR HORIZONTAL -->
-        <hr class="mobile-divider mt-0.5 mb-0.5" />
+        <hr class="mobile-divider mt-1 mb-1" />
 
-        <div class="grid md:grid-cols-2 gap-16">
+        <div class="grid md:grid-cols-2 md:gap-8">
           <!-- Categorias de Horários (Bar) -->
           <div class="flex flex-col gap-4">
             <div class="chart-container">
@@ -128,7 +128,7 @@
             </div>
 
             <!-- SEPARADOR MOBILE -->
-            <hr class="mobile-divider md:hidden mt-0.5 mb-0.5" />
+            <hr class="mobile-divider md:hidden mt-1 mb-1" />
           </div>
 
           <!-- Horários (Bar) -->
@@ -139,23 +139,24 @@
           </div>
         </div>
 
-        <hr class="mobile-divider mt-0.5 mb-0.5" />
+        <hr class="mobile-divider mt-1 mb-1" />
 
         <!-- Trancamento + Relatos -->
         <div class="flex flex-col gap-6 w-full">
-          <div class="flex flex-col md:flex-row align-center gap-8">
+          <div class="flex flex-col md:flex-row align-center md:gap-8">
             <!-- Gráfico de Trancamento -->
             <div class="chart-container md:w-1/2">
               <canvas class="overflow-visible" id="trancarChart"></canvas>
             </div>
 
             <!-- SEPARADOR HORIZONTAL -->
-            <hr class="mobile-divider md:hidden mt-0.5 mb-0.5" />
+            <hr class="mobile-divider md:hidden mt-1 mb-1" />
 
             <!-- Relatos -->
             <div class="flex flex-col gap-4 md:w-1/2 ">
               <div class="flex justify-center align-center">
-                <h2 class="flex text-xl font-semibold md:text-left text-custom-text font-bold" style="color: #757575">
+                <h2 class="flex text-xl mt-6 font-semibold md:text-left text-custom-text font-bold"
+                  style="color: #757575">
                   Relatos de Alunos
                 </h2>
               </div>
