@@ -39,10 +39,10 @@ export const REASONS_LABELS = [
 export const CHART_CONFIG = {
   defaultHeight: "500px",
   defaultMaxHeight: "600px",
-  horariosHeight: "400px",
-  horariosMaxHeight: "400px",
-  categoriasHeight: "500px",
+  horariosHeight: "500px",
+  horariosMaxHeight: "500px",
+  categoriasHeight: "600px",
   categoriasMaxHeight: "500px",
-  reasonsHeight: "444px",
-  reasonsMaxHeight: "444px"
+  reasonsHeight: "400px",
+  reasonsMaxHeight: "600px"
 }; 
