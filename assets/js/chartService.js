@@ -208,7 +208,7 @@ export const renderCharts = (stats, cachedData) => {
   const reasonsLabelsSorted = reasonsSorted.map(([label]) => breakLabel(label));
   reasonsLabelsSorted[0] = ["Dificuldade em", "conseguir estágio"]
   reasonsLabelsSorted[1] = ["Preciso trabalhar no", " horário da aula"]
-  reasonsLabelsSorted[2] = ["Moradia muito", "longe da instiuição"]
+  reasonsLabelsSorted[2] = ["Moradia muito", "longe da instituição"]
   reasonsLabelsSorted[3] = ["Responsabilidades", "pessoais ou familiares"]
   reasonsLabelsSorted[4] = ["Dificuldade de", "aprendizado no turno"]
   const reasonsCountsSorted = reasonsSorted.map(([_, count]) => count);
