@@ -213,24 +213,46 @@ export const renderCharts = (stats, cachedData) => {
   reasonsLabelsSorted[4] = ["Dificuldade de", "aprendizado no turno"]
   const reasonsCountsSorted = reasonsSorted.map(([_, count]) => count);
   const reasonsColors = CHART_COLORS.slice(0, reasonsLabelsSorted.length);
-  const reasontitle = (window.innerWidth <= 600 ? ["⁠Principais Motivadores da", "Insatisfação com Horários Atuais"] : "⁠Principais Motivadores da Insatisfação com Horários Atuais");
+  const reasontitle = (window.innerWidth <= 600 ?
+    ["⁠Principais Motivadores da", "Insatisfação com Horários Atuais"] :
+    ["⁠Principais Motivadores da", "Insatisfação com Horários Atuais"]
+  );
   const reasonSubtitle = "Gráfico 2";
 
-  createBarChart("reasonsChart", reasontitle, reasonSubtitle, reasonsLabelsSorted, reasonsCountsSorted, reasonsColors, Math.max(...reasonsCounts) + 10, "horizontal", true, CHART_CONFIG.reasonsHeight);
+  createBarChart("reasonsChart",
+    reasontitle,
+    reasonSubtitle,
+    reasonsLabelsSorted,
+    reasonsCountsSorted,
+    reasonsColors,
+    Math.max(...reasonsCounts) + 10,
+    "horizontal",
+    true,
+    CHART_CONFIG.reasonsHeight);
 
-  // --- Categorias de Horários Bar Chart ---
-  let categoriasLabels = Object.keys(stats.horariosCategorias);
-  categoriasLabels[0] = "M1 - M6"
-  categoriasLabels[1] = "T1 - T3"
-  categoriasLabels[2] = "T4 - T6"
-  categoriasLabels[3] = "N1 - N6"
-  const categoriasData = Object.values(stats.horariosCategorias);
+
+  // --- Agrupamento de Horários Bar Chart ---
+  const pares = Object.entries(stats.horariosCategorias).sort((a, b) => b[1] - a[1]);
+  const categoriasLabels = pares.map(item => item[0]);
+  const categoriasData = pares.map(item => item[1]);
   const categoriasColors = CHART_COLORS.slice(0, categoriasLabels.length);
-  const categoriastitle = (window.innerWidth <= 600 ? ["⁠Quantitativo de Insatisfação", "por Período do Dia"] : "Quantitativo de Insatisfação por Período do Dia");
+  const categoriastitle = (window.innerWidth <= 600
+    ? ["⁠Quantitativo de Insatisfação", "por Período do Dia"]
+    : "Quantitativo de Insatisfação por Período do Dia"
+  );
   const categoriasSubtitle = "Gráfico 3";
 
-  createBarChart("categoriasChart", categoriastitle, categoriasSubtitle, categoriasLabels, categoriasData, categoriasColors, Math.max(...categoriasData) + 50, "horizontal", true);
-
+  createBarChart(
+    "categoriasChart",
+    categoriastitle,
+    categoriasSubtitle,
+    categoriasLabels,
+    categoriasData,
+    categoriasColors,
+    Math.max(...categoriasData) + 50,
+    "horizontal",
+    true
+  );
   // --- Horários Bar Chart ---
   const horariosSorted = Object.entries(stats.horariosFreq).sort((a, b) => b[1] - a[1]);
   const horariosLabels = horariosSorted.map((h) => extractTimeSlot(h[0]));

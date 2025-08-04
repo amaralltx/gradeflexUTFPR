@@ -41,10 +41,11 @@ export const calculateStats = (data) => {
 
   // Agrupa horários em categorias
   const horariosCategorias = {
-    "Manhã M1 – M6": 0,
-    "Início da tarde T1 – T3": 0,
-    "Meio/fim da tarde T4 – T6": 0,
-    "Noite N1 – N5": 0
+    "M1 - M3": 0,
+    "M4 - M6": 0,
+    "T1 - T3": 0,
+    "T4 - T6": 0,
+    "N1 - N5": 0
   };
 
   data.forEach((d) => {
@@ -55,19 +56,26 @@ export const calculateStats = (data) => {
       const key = normalize(horario);
       if (!key) return;
 
-      if (key.includes("M1") || key.includes("M2") || key.includes("M3") ||
-        key.includes("M4") || key.includes("M5") || key.includes("M6")) {
-        horariosCategorias["Manhã M1 – M6"]++;
+      if (key.includes("M1") || key.includes("M2") || key.includes("M3")) {
+        horariosCategorias["M1 - M3"]++;
+      } else if (key.includes("M4") || key.includes("M5") || key.includes("M6")) {
+        horariosCategorias["M4 - M6"]++;
       } else if (key.includes("T1") || key.includes("T2") || key.includes("T3")) {
-        horariosCategorias["Início da tarde T1 – T3"]++;
+        horariosCategorias["T1 - T3"]++;
       } else if (key.includes("T4") || key.includes("T5") || key.includes("T6")) {
-        horariosCategorias["Meio/fim da tarde T4 – T6"]++;
-      } else if (key.includes("N1") || key.includes("N2") || key.includes("N3") ||
-        key.includes("N4") || key.includes("N5")) {
-        horariosCategorias["Noite N1 – N5"]++;
+        horariosCategorias["T4 - T6"]++;
+      } else if (
+        key.includes("N1") ||
+        key.includes("N2") ||
+        key.includes("N3") ||
+        key.includes("N4") ||
+        key.includes("N5")
+      ) {
+        horariosCategorias["N1 - N5"]++;
       }
     });
   });
+
 
   // Dados de alunos que cogitaram trancar
   const trancarData = { "Sim": 0, "Não": 0 };
